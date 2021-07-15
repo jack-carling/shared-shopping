@@ -1,0 +1,8 @@
+@import '../style/_variables';
+
+.Header-title {
+  margin: 0;
+  font-size: 3rem;
+  font-family: 'Zen Loop', cursive;
+  border-bottom: 1px solid $border;
+}

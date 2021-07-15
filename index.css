@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Zen+Loop&display=swap');
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 1rem;
+  background-color: #eee;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -5,35 +5,48 @@ import './Item.scss';
 type ItemProps = {
   id: number;
   item: string;
-  showDelete: boolean;
-};
-
-type DeleteButton = {
   show: boolean;
+  edit: number;
+  clickHandler: (e: React.MouseEvent<HTMLElement>, id: number, action: string) => void;
+  editHandler: (e: React.FormEvent, id: number) => void;
 };
 
-function handleCheckbox(e: any) {
-  console.log(e.target.checked);
+function handleCheckbox(e: React.FormEvent) {
+  const check = e.target as HTMLFormElement;
+  console.log(check.checked);
 }
 
-function DeleteButton({ show }: DeleteButton) {
-  if (show) {
-    return <i className="material-icons">remove_circle</i>;
-  }
-  return <></>;
-}
-
-function Item({ item, id, showDelete }: ItemProps) {
+function Item({ item, id, show, edit, clickHandler, editHandler }: ItemProps) {
   return (
     <li className="Item">
-      <div>
+      <div className="Item-inputs">
         <label>
           <input onChange={handleCheckbox} type="checkbox" className="filled-in" />
           <span>&nbsp;</span>
         </label>
-        <span>{item}</span>
+        <div>
+          <span
+            contentEditable={edit === id}
+            onBlur={(e) => editHandler(e, id)}
+            className="Item-text"
+            suppressContentEditableWarning={true}
+          >
+            {item}
+          </span>
+        </div>
       </div>
-      <DeleteButton show={showDelete} />
+      {show ? (
+        <div className="Item-edit">
+          <i className="material-icons" onClick={(e) => clickHandler(e, id, 'edit')}>
+            edit
+          </i>
+          <i className="material-icons" onClick={(e) => clickHandler(e, id, 'remove')}>
+            remove_circle
+          </i>
+        </div>
+      ) : (
+        <></>
+      )}
     </li>
   );
 }

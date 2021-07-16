@@ -1,9 +1,20 @@
 section.Main {
+  display: flex;
   margin-top: 1rem;
-  input {
-    min-width: 400px;
-  }
   button {
     margin-left: 1rem;
   }
+}
+
+input.Main,
+input.Main:focus {
+  margin: 0 !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+input.Main {
+  background-color: #fff !important;
+  height: initial !important;
+  padding: 0.5rem !important;
+  // border-radius: 999px !important;
 }

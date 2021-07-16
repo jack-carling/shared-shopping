@@ -7,11 +7,22 @@ li.Item {
   justify-content: space-between;
   label span {
     line-height: initial !important;
-    height: 20px !important;
+    height: 21px !important;
+    font-size: 16px !important;
   }
+}
+
+li.Item:not(:last-of-type) {
+  border-bottom: 1px solid $border;
+}
+
+div.Item-edit {
   i {
     font-size: 20px;
     cursor: pointer;
+  }
+  i:nth-child(2) {
+    margin-left: 0.5rem;
     color: $remove;
   }
   i:hover {
@@ -19,6 +30,11 @@ li.Item {
   }
 }
 
-li.Item:not(:last-of-type) {
-  border-bottom: 1px solid $border;
+.Item-inputs {
+  display: flex;
+  align-items: center;
+}
+.Item-text {
+  font-size: 16px !important;
+  display: flex;
 }

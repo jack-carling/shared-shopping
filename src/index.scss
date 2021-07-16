@@ -20,14 +20,22 @@ body {
   padding: 1rem;
 }
 
-.input-field input[type='text']:focus + label {
-  color: $amber !important;
-}
-.input-field input[type='text']:focus {
-  border-bottom: 1px solid $amber !important;
-  box-shadow: 0 1px 0 0 $amber !important;
-}
 [type='checkbox'].filled-in:checked + span::after {
   border: 2px solid $amber !important;
   background-color: $amber !important;
+}
+
+[contenteditable] {
+  padding: 0.2rem;
+}
+[contenteditable='true'] {
+  background: #fff;
+}
+[contenteditable='true']:focus {
+  outline: 0;
+}
+
+button.btn-floating i {
+  width: initial !important;
+  padding: inherit !important;
 }

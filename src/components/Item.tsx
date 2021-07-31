@@ -4,16 +4,20 @@ import './Item.scss';
 
 type ItemProps = {
   id: number;
-  item: string;
+  item: Item;
   show: boolean;
   edit: number;
   clickHandler: (e: React.MouseEvent<HTMLElement>, id: number, action: string) => void;
   editHandler: (e: React.FormEvent, id: number) => void;
 };
 
+type Item = {
+  name: string;
+  category: string;
+};
+
 function handleCheckbox(e: React.FormEvent) {
   const check = e.target as HTMLFormElement;
-  console.log(check.checked);
 }
 
 function Item({ item, id, show, edit, clickHandler, editHandler }: ItemProps) {
@@ -31,7 +35,7 @@ function Item({ item, id, show, edit, clickHandler, editHandler }: ItemProps) {
             className="Item-text"
             suppressContentEditableWarning={true}
           >
-            {item}
+            {item.name}
           </span>
         </div>
       </div>

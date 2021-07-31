@@ -1,6 +1,12 @@
+@import '../style/_mixins.scss';
+
 .Category-section {
   margin-top: 0.5rem;
   .chip {
     cursor: pointer;
   }
+}
+
+.chip {
+  @include no-select;
 }

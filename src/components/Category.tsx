@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import './Category.scss';
+
+let selectedCategory = '';
 
 const allCategories = [
   { id: 0, name: 'Baby', count: 0 },
@@ -29,29 +31,59 @@ const allCategories = [
   { id: 23, name: 'Tobacco', count: 0 },
 ];
 
-function Category() {
+interface Category {
+  selectedCategory: (category: string) => void;
+  sortCategory: string;
+}
+
+function Category(props: Category) {
   const [categories, setCategories] = useState(() => [
     ...allCategories.slice(0, 5),
-    { id: 999, name: '...', count: 0 },
+    { id: 999, name: '...', count: -1 },
   ]);
 
-  function handleCategory(name: string) {
-    if (!name.includes('...')) return;
-    const newCategories = allCategories.slice(categories.length - 1, categories.length + 4);
+  const firstRender = useRef(true);
 
-    if (!newCategories.length) return;
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
     setCategories((category) => {
-      let categories = [...category];
-      categories.pop();
-
-      categories = [...categories, ...newCategories];
-
-      const id = allCategories[allCategories.length - 1].id;
-      if (!categories.find((x) => x.id === id)) {
-        categories.push({ id: 999, name: '...', count: 0 });
+      if (props.sortCategory === 'Standard') {
+        return [...category].sort((a, b) => a.id - b.id);
+      } else {
+        category.sort((a, b) => a.count - b.count);
+        return [...category].reverse();
       }
-      return categories;
     });
+  }, [props.sortCategory]);
+
+  function handleCategory(name: string) {
+    if (!name.includes('...')) {
+      props.selectedCategory(name);
+      setCategories((category) => {
+        const item = category.find((x) => x.name === name);
+        if (item) item.count++;
+        return category;
+      });
+    } else {
+      const newCategories = allCategories.slice(categories.length - 1, categories.length + 4);
+
+      if (!newCategories.length) return;
+      setCategories((category) => {
+        let categories = [...category];
+        categories.pop();
+
+        categories = [...categories, ...newCategories];
+
+        const id = allCategories[allCategories.length - 1].id;
+        if (!categories.find((x) => x.id === id)) {
+          categories.push({ id: 999, name: '...', count: -1 });
+        }
+        return categories;
+      });
+    }
   }
 
   return (

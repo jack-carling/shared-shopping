@@ -4,17 +4,24 @@ import './Main.scss';
 import Item from './Item';
 import Category from './Category';
 
+interface Items {
+  name: string;
+  category: string;
+}
+
 function Main() {
-  const defaultItems: string[] = [];
+  const defaultItems: Items[] = [];
   const inputElement = useRef<HTMLInputElement>(null);
   const [items, setItems] = useState(() => defaultItems);
   const [showTools, setShowTools] = useState(false);
   const [edit, setEdit] = useState(-1);
   const [input, setInput] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('None');
+  const [sortCategory, setSortCategory] = useState('Standard');
 
   function addItem() {
     if (!input) return;
-    setItems((items) => [input, ...items]);
+    setItems((items) => [{ name: input, category: selectedCategory }, ...items]);
     setInput('');
     if (inputElement.current) inputElement.current.focus();
     if (edit !== -1) {
@@ -51,8 +58,12 @@ function Main() {
     content = content.replaceAll('&nbsp;', '');
     content = content.trim();
     const newItems = [...items];
-    newItems.splice(id, 1, content);
+    newItems[id].name = content;
     setItems(() => [...newItems]);
+  }
+
+  function handleSortCategories() {
+    setSortCategory((category) => (category === 'Standard' ? 'Most used' : 'Standard'));
   }
 
   return (
@@ -80,7 +91,12 @@ function Main() {
           <i className="material-icons">edit</i>
         </button>
       </section>
-      <Category />
+      <span className="Main">Selected category: {selectedCategory}</span>
+      <span className="Main">&nbsp;|&nbsp;</span>
+      <span className="Main Main-sorting" onClick={handleSortCategories}>
+        Sort by: {sortCategory}
+      </span>
+      <Category sortCategory={sortCategory} selectedCategory={(value: string) => setSelectedCategory(value)} />
       <ul>
         {items.map((item, index) => (
           <Item

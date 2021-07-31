@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import './Main.scss';
 
 import Item from './Item';
+import Category from './Category';
 
 function Main() {
   const defaultItems: string[] = [];
@@ -79,6 +80,7 @@ function Main() {
           <i className="material-icons">edit</i>
         </button>
       </section>
+      <Category />
       <ul>
         {items.map((item, index) => (
           <Item

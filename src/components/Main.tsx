@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Main.scss';
 
 import Item from './Item';
@@ -11,7 +11,9 @@ interface Items {
 }
 
 function Main() {
-  const defaultItems: Items[] = [];
+  let itemsFromLocalStorage = localStorage.items;
+  if (itemsFromLocalStorage) itemsFromLocalStorage = JSON.parse(itemsFromLocalStorage);
+  const defaultItems: Items[] = itemsFromLocalStorage !== undefined ? itemsFromLocalStorage : [];
   const inputElement = useRef<HTMLInputElement>(null);
   const [items, setItems] = useState(() => defaultItems);
   const [showTools, setShowTools] = useState(false);
@@ -19,6 +21,15 @@ function Main() {
   const [input, setInput] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('None');
   const [sortCategory, setSortCategory] = useState('Standard');
+
+  const firstRender = useRef(true);
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    localStorage.items = JSON.stringify(items);
+  }, [items]);
 
   function addItem() {
     if (!input) return;

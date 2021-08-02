@@ -23,7 +23,7 @@ const allCategories = [
   { id: 17, name: 'Paper Products', count: 0 },
   { id: 18, name: 'Cleaning Supplies', count: 0 },
   { id: 19, name: 'Health & Beauty', count: 0 },
-  { id: 20, name: 'Personal Care & Pharmacy', count: 0 },
+  { id: 20, name: 'Personal Care', count: 0 },
   { id: 21, name: 'Pet Care', count: 0 },
   { id: 22, name: 'Pharmacy', count: 0 },
   { id: 23, name: 'Tobacco', count: 0 },

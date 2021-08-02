@@ -20,11 +20,6 @@ body {
   padding: 1rem;
 }
 
-[type='checkbox'].filled-in:checked + span::after {
-  border: 2px solid $amber !important;
-  background-color: $amber !important;
-}
-
 [contenteditable] {
   padding: 0.2rem;
 }
@@ -35,7 +30,10 @@ body {
   outline: 0;
 }
 
-button.btn-floating i {
-  width: initial !important;
-  padding: inherit !important;
+button.btn-floating {
+  border-radius: 0;
+  i {
+    width: initial !important;
+    padding: inherit !important;
+  }
 }

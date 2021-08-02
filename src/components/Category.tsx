@@ -5,7 +5,7 @@ import './Category.scss';
 let categoriesFromLocalStorage = localStorage.categories;
 if (categoriesFromLocalStorage) categoriesFromLocalStorage = JSON.parse(categoriesFromLocalStorage);
 
-const allCategories: allCategories[] =
+const allCategories: AllCategories[] =
   categoriesFromLocalStorage !== undefined
     ? categoriesFromLocalStorage
     : [
@@ -35,7 +35,7 @@ const allCategories: allCategories[] =
         { id: 23, name: 'Tobacco', count: 0 },
       ];
 
-interface allCategories {
+interface AllCategories {
   id: number;
   name: string;
   count: number;
@@ -47,11 +47,8 @@ interface Category {
 }
 
 function Category(props: Category) {
-  let categoriesLength = localStorage.categoriesLength;
-  categoriesLength = categoriesLength === undefined ? 5 : JSON.parse(categoriesLength);
-
   const [categories, setCategories] = useState(() => [
-    ...allCategories.slice(0, categoriesLength),
+    ...allCategories.slice(0, 5),
     { id: 999, name: '...', count: -1 },
   ]);
 
@@ -90,8 +87,6 @@ function Category(props: Category) {
         categories.pop();
 
         categories = [...categories, ...newCategories];
-
-        localStorage.categoriesLength = JSON.stringify(categories.length);
 
         const id = allCategories[allCategories.length - 1].id;
         if (!categories.find((x) => x.id === id)) {

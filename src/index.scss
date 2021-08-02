@@ -4,6 +4,7 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -26,12 +27,14 @@ body {
 [contenteditable='true'] {
   background: #fff;
 }
-[contenteditable='true']:focus {
+[contenteditable],
+[contenteditable]:focus {
   outline: 0;
 }
 
 button.btn-floating {
   border-radius: 0;
+  flex-shrink: 0;
   i {
     width: initial !important;
     padding: inherit !important;

@@ -1,8 +1,23 @@
 @import '../style/_variables';
 
-.Header-title {
+section.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $border;
+  height: 50px;
+  i {
+    margin-right: 1rem;
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  i:hover {
+    opacity: 0.75;
+  }
+}
+
+h1.Header {
   margin: 0;
   font-size: 3rem;
   font-family: 'Zen Loop', cursive;
-  border-bottom: 1px solid $border;
 }

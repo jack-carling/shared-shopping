@@ -19,8 +19,11 @@ function Main() {
   const [showTools, setShowTools] = useState(false);
   const [edit, setEdit] = useState(-1);
   const [input, setInput] = useState('');
+  const [latestItem, setLatestItem] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('None');
   const [sortCategory, setSortCategory] = useState('Standard');
+
+  const checkmark = useRef<HTMLDivElement>(null);
 
   const firstRender = useRef(true);
   useEffect(() => {
@@ -35,7 +38,13 @@ function Main() {
     if (!input) return;
     setItems((items) => [{ name: input, checked: false, category: selectedCategory }, ...items]);
     setItems((items) => [...items].sort((a, b) => (a.category > b.category ? 1 : b.category > a.category ? -1 : 0)));
+    setLatestItem(input);
     setInput('');
+    if (checkmark.current) {
+      checkmark.current.classList.remove('fade');
+      void checkmark.current.offsetHeight;
+      checkmark.current.classList.add('fade');
+    }
     if (inputElement.current) inputElement.current.focus();
     if (edit !== -1) {
       setEdit((edit) => edit + 1);
@@ -89,15 +98,21 @@ function Main() {
   return (
     <>
       <section className="Main">
-        <input
-          id="input-item"
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyUp={(e) => handleKey(e)}
-          ref={inputElement}
-          className="Main"
-        />
+        <article className="Main-input">
+          <input
+            id="input-item"
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyUp={(e) => handleKey(e)}
+            ref={inputElement}
+            className="Main"
+          />
+          <div ref={checkmark}>
+            <span>{latestItem} added</span>
+            <i className="material-icons">check</i>
+          </div>
+        </article>
         <button className="btn-floating waves-effect waves-light amber" onClick={addItem}>
           <i className="material-icons">add</i>
         </button>
@@ -118,7 +133,13 @@ function Main() {
       <span className="Main Main-sorting" onClick={handleSortCategories}>
         Sort categories by: {sortCategory} <i className="material-icons">sync</i>
       </span>
-      <Category sortCategory={sortCategory} selectedCategory={(value: string) => setSelectedCategory(value)} />
+      <Category
+        sortCategory={sortCategory}
+        selectedCategory={(value: string) => {
+          setSelectedCategory(value);
+          inputElement.current?.focus();
+        }}
+      />
       <ul className="Main">
         {items.map((item, index) => (
           <Item

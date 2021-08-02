@@ -22,6 +22,7 @@ function Main() {
   function addItem() {
     if (!input) return;
     setItems((items) => [{ name: input, category: selectedCategory }, ...items]);
+    setItems((items) => [...items].sort((a, b) => (a.category > b.category ? 1 : b.category > a.category ? -1 : 0)));
     setInput('');
     if (inputElement.current) inputElement.current.focus();
     if (edit !== -1) {
@@ -94,10 +95,10 @@ function Main() {
       <span className="Main">Selected category: {selectedCategory}</span>
       <span className="Main">&nbsp;|&nbsp;</span>
       <span className="Main Main-sorting" onClick={handleSortCategories}>
-        Sort by: {sortCategory}
+        Sort categories by: {sortCategory} <i className="material-icons">sync</i>
       </span>
       <Category sortCategory={sortCategory} selectedCategory={(value: string) => setSelectedCategory(value)} />
-      <ul>
+      <ul className="Main">
         {items.map((item, index) => (
           <Item
             key={index}

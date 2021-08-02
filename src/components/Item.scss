@@ -12,8 +12,12 @@ li.Item {
   }
 }
 
-li.Item:not(:last-of-type) {
+li.Item {
   border-bottom: 1px solid $border;
+}
+
+[class*='Item-Category']:first-child {
+  margin-top: 0;
 }
 
 div.Item-edit {
@@ -37,4 +41,38 @@ div.Item-edit {
 .Item-text {
   font-size: 16px !important;
   display: flex;
+}
+
+[class*='Item-Category'] {
+  display: block;
+  margin-top: 2rem;
+}
+
+.Item-Category ~ .Item-Category,
+.Item-Category0 ~ .Item-Category0,
+.Item-Category1 ~ .Item-Category1,
+.Item-Category2 ~ .Item-Category2,
+.Item-Category3 ~ .Item-Category3,
+.Item-Category4 ~ .Item-Category4,
+.Item-Category5 ~ .Item-Category5,
+.Item-Category6 ~ .Item-Category6,
+.Item-Category7 ~ .Item-Category7,
+.Item-Category8 ~ .Item-Category8,
+.Item-Category9 ~ .Item-Category9,
+.Item-Category10 ~ .Item-Category10,
+.Item-Category11 ~ .Item-Category11,
+.Item-Category12 ~ .Item-Category12,
+.Item-Category13 ~ .Item-Category13,
+.Item-Category14 ~ .Item-Category14,
+.Item-Category15 ~ .Item-Category15,
+.Item-Category16 ~ .Item-Category16,
+.Item-Category17 ~ .Item-Category17,
+.Item-Category18 ~ .Item-Category18,
+.Item-Category19 ~ .Item-Category19,
+.Item-Category20 ~ .Item-Category20,
+.Item-Category21 ~ .Item-Category21,
+.Item-Category22 ~ .Item-Category22,
+.Item-Category23 ~ .Item-Category23 {
+  display: none;
+  margin-top: 0;
 }

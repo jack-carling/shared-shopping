@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import './Category.scss';
 
-let selectedCategory = '';
-
 const allCategories = [
   { id: 0, name: 'Baby', count: 0 },
   { id: 1, name: 'Beer, Wine & Spirits', count: 0 },
@@ -98,3 +96,4 @@ function Category(props: Category) {
 }
 
 export default Category;
+export { allCategories };

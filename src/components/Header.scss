@@ -5,7 +5,7 @@ section.Header {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid $border;
-  height: 50px;
+  min-height: 50px;
   i {
     margin-right: 1rem;
     opacity: 0.5;
@@ -13,6 +13,9 @@ section.Header {
   }
   i:hover {
     opacity: 0.75;
+  }
+  div {
+    display: flex;
   }
 }
 

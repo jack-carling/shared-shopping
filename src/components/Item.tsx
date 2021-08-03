@@ -44,10 +44,12 @@ function Item({ item, id, show, edit, clickHandler, editHandler, checkboxHandler
       const length = element.innerHTML.length;
       const range = document.createRange();
       const selection = window.getSelection();
+      if (!range) return;
       range.setStart(element.childNodes[0], length);
       range.collapse(true);
-      selection?.removeAllRanges();
-      selection?.addRange(range);
+      if (!selection) return;
+      selection.removeAllRanges();
+      selection.addRange(range);
       element.focus();
     }, 10);
   }

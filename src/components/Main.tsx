@@ -46,9 +46,6 @@ function Main() {
       checkmark.current.classList.add('fade');
     }
     if (inputElement.current) inputElement.current.focus();
-    if (edit !== -1) {
-      setEdit((edit) => edit + 1);
-    }
   }
 
   function handleKey(e: React.KeyboardEvent) {
@@ -58,10 +55,6 @@ function Main() {
 
   function editItem(e: React.MouseEvent, id: number, action: string) {
     if (action === 'edit') {
-      if (edit === id) {
-        setEdit(() => -1);
-        return;
-      }
       setEdit(() => id);
     }
     if (action === 'remove') {

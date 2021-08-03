@@ -1,4 +1,5 @@
-@import '../style/variables';
+@import '../style/_variables';
+@import '../style/_mixins';
 
 section.Main {
   display: flex;
@@ -39,14 +40,10 @@ section.Main {
 
 input.Main,
 input.Main:focus {
-  margin: 0 !important;
-  box-shadow: none !important;
-  border-bottom: none !important;
+  @include input-focus;
 }
 input.Main {
-  background-color: #fff !important;
-  height: initial !important;
-  padding: 0.5rem !important;
+  @include input;
 }
 
 span.Main {

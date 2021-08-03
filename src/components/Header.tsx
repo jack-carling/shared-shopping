@@ -4,10 +4,11 @@ import './Header.scss';
 
 interface Props {
   handleSettings: (e: React.MouseEvent) => void;
+  handleShare: (e: React.MouseEvent) => void;
   name: string;
 }
 
-function Header({ handleSettings, name }: Props) {
+function Header({ handleSettings, handleShare, name }: Props) {
   const [displayName, setDisplayName] = useState('');
   const header = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
@@ -19,9 +20,14 @@ function Header({ handleSettings, name }: Props) {
       <h1 className="Header" ref={header}>
         {displayName}
       </h1>
-      <i className="material-icons" onClick={handleSettings}>
-        settings
-      </i>
+      <div>
+        <i className="material-icons" onClick={handleShare}>
+          share
+        </i>
+        <i className="material-icons" onClick={handleSettings}>
+          settings
+        </i>
+      </div>
     </section>
   );
 }

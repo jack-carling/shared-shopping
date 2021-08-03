@@ -6,7 +6,7 @@ type CloseEvent = React.KeyboardEvent | React.MouseEvent;
 
 interface Props {
   name: string;
-  updateName: (e: string) => void;
+  updateName: (name: string) => void;
   closeSettings: (e: CloseEvent) => void;
 }
 
@@ -14,6 +14,9 @@ function Settings({ name, updateName, closeSettings }: Props) {
   return (
     <main className="Settings">
       <div className="Settings-wrapper">
+        <i className="material-icons Settings-close" onClick={closeSettings}>
+          close
+        </i>
         <h2 className="Settings">Settings</h2>
         <span>Name of shopping list</span>
         <div>

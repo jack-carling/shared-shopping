@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 
 import Header from './components/Header';
 import Settings from './components/Settings';
+import Share from './components/Share';
 import Main from './components/Main';
 
 function App() {
   const [showSettings, setShowSettings] = useState(false);
+  const [showShare, setShowShare] = useState(false);
 
   let nameFromLocalStorage = localStorage.name;
   const defaultName = nameFromLocalStorage !== undefined ? nameFromLocalStorage : 'Shared Shopping';
@@ -13,7 +15,7 @@ function App() {
 
   return (
     <>
-      <Header handleSettings={() => setShowSettings(true)} name={name} />
+      <Header handleSettings={() => setShowSettings(true)} name={name} handleShare={() => setShowShare(true)} />
       {showSettings && (
         <Settings
           name={name}
@@ -27,6 +29,8 @@ function App() {
           }}
         />
       )}
+
+      {showShare && <Share closeShare={() => setShowShare(false)} />}
       <Main />
     </>
   );

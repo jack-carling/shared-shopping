@@ -1,0 +1,71 @@
+@import '../style/_variables';
+@import '../style/_mixins';
+
+main {
+  @include fixed-main;
+  div.Share-wrapper {
+    @include fixed-wrapper;
+    span {
+      display: block;
+      margin: 0.5rem 0;
+    }
+    span.Share-error {
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      color: $remove;
+      i {
+        font-size: 18px;
+        margin-right: 0.25rem;
+      }
+    }
+    span.Share-extra-space {
+      margin-top: 1.5rem;
+      padding: 0.5rem;
+      border-top: 1px solid $border;
+    }
+    div.Share-input-wrapper {
+      display: flex;
+      button {
+        flex-shrink: 0;
+      }
+      div {
+        display: flex;
+        width: 100%;
+        position: relative;
+        i {
+          height: 24px;
+          position: absolute;
+          right: 0.5rem;
+          top: 0;
+          bottom: 0;
+          margin-top: auto;
+          margin-bottom: auto;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+h2.Share {
+  @include h2;
+}
+
+input.Share,
+input.Share:focus {
+  @include input-focus;
+}
+input.Share {
+  @include input;
+}
+
+.Share-copy {
+  color: $check;
+}
+
+i.Share-close {
+  @include close-icon;
+}

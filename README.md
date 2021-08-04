@@ -2,8 +2,6 @@
 
 ## About
 
-Work in progress...
-
 Shared shopping is my first React project where the user can create a list, categorize it if the user wishes to do so and also share it with someone to collaborate on the same list.
 
 ## Functionality
@@ -21,6 +19,24 @@ Shared shopping is my first React project where the user can create a list, cate
 ## Screenshot
 
 <img src="https://user-images.githubusercontent.com/72305598/128172799-01faa1c0-5d6d-4b7f-b327-88a59ec074d4.png" width="200px">
+
+## Installation
+
+```bash
+npm install
+```
+
+For the backend you will need a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account. Create a `.env` file in the root directory and insert `MONGO_DB=` followed by your connection string.
+
+```bash
+# Terminal 1 (frontend)
+npm run dev
+```
+
+```bash
+# Terminal 2 (backend)
+npm run database
+```
 
 ## Categories
 
@@ -48,21 +64,3 @@ Shared shopping is my first React project where the user can create a list, cate
 - Pet Care
 - Pharmacy
 - Tobacco
-
-## Installation
-
-```bash
-npm install
-```
-
-For the backend you will need a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account. Create a `.env` file in the root directory and insert `MONGO_DB=` followed by your connection string.
-
-```bash
-# Terminal 1 (frontend)
-npm run dev
-```
-
-```bash
-# Terminal 2 (backend)
-npm run database
-```

@@ -15,7 +15,6 @@ mongoose.connect(process.env.MONGO_DB, {
 
 const Shopping = require('./model');
 
-//app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.json());
 
 app.post('/api/code', async (req, res) => {
@@ -24,10 +23,11 @@ app.post('/api/code', async (req, res) => {
   const name = req.body.name;
   const code = nanoid(10);
   const password = '';
-  const data = { code, categories, items, name, password };
+  const time = Date.now();
+  const data = { code, categories, items, name, password, time };
   const db = new Shopping(data);
   await db.save();
-  res.json({ success: true, code });
+  res.json({ success: true, code, time });
 });
 
 app.post('/api/password', async (req, res) => {
@@ -69,6 +69,23 @@ app.post('/api/compare', async (req, res) => {
     response.success = false;
   }
   res.json(response);
+});
+
+app.post('/api/save', async (req, res) => {
+  const categories = JSON.parse(req.body.categories);
+  const items = JSON.parse(req.body.items);
+  const name = req.body.name;
+  const code = req.body.code;
+  const time = Date.now();
+  const data = { code, categories, items, name, time };
+  const db = await Shopping.findOneAndUpdate({ code }, data);
+  res.json({ success: true, time });
+});
+
+app.get('/api/list', async (req, res) => {
+  const code = req.query.code;
+  const db = await Shopping.find({ code });
+  res.json({ success: true, data: db[0] });
 });
 
 const PORT = process.env.PORT || 5000;

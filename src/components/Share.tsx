@@ -8,6 +8,7 @@ interface ResponseData {
   message?: string;
   password?: boolean;
   data?: Data[];
+  time?: number;
 }
 
 interface Data {
@@ -25,8 +26,6 @@ interface Props {
 let CODE = '';
 
 function updateData(data: Data) {
-  console.log(data);
-
   if (data.categories.length) {
     localStorage.categories = JSON.stringify(data.categories);
   }
@@ -69,7 +68,10 @@ function Settings({ closeShare }: Props) {
       },
     });
     const data: ResponseData = await res.json();
-    if (data.success) setCode(data.code);
+    if (data.success) {
+      setCode(data.code);
+      localStorage.time = data.time;
+    }
   }
 
   function copyCode(e: React.MouseEvent) {
@@ -206,27 +208,35 @@ function Settings({ closeShare }: Props) {
             </div>
           </>
         )}
-        <span className="Share-extra-space">{joinText}</span>
-        <div className="Share-input-wrapper">
-          <input
-            maxLength={10}
-            autoComplete="off"
-            className="Share"
-            type="text"
-            ref={joinInput}
-            onChange={(e) => {
-              setInput(e.target.value);
-              setError('');
-            }}
-          />
-          <button className="btn waves-effect waves-light amber" onClick={confirmCode} style={{ marginLeft: '1rem' }}>
-            Join
-          </button>
-        </div>
-        <span className="Share-error" style={{ visibility: error ? 'visible' : 'hidden' }}>
-          <i className="material-icons">error</i>
-          {error}
-        </span>
+        {code.length === 0 && (
+          <>
+            <span className="Share-extra-space">{joinText}</span>
+            <div className="Share-input-wrapper">
+              <input
+                maxLength={10}
+                autoComplete="off"
+                className="Share"
+                type="text"
+                ref={joinInput}
+                onChange={(e) => {
+                  setInput(e.target.value);
+                  setError('');
+                }}
+              />
+              <button
+                className="btn waves-effect waves-light amber"
+                onClick={confirmCode}
+                style={{ marginLeft: '1rem' }}
+              >
+                Join
+              </button>
+            </div>
+            <span className="Share-error" style={{ visibility: error ? 'visible' : 'hidden' }}>
+              <i className="material-icons">error</i>
+              {error}
+            </span>
+          </>
+        )}
       </div>
     </main>
   );

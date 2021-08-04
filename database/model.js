@@ -9,6 +9,7 @@ const Shopping = new Schema({
   items: Array,
   categories: Array,
   password: String,
+  time: Number,
 });
 
 module.exports = mongoose.model('Shopping', Shopping);

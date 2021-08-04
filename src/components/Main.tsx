@@ -10,7 +10,11 @@ interface Items {
   category: string;
 }
 
-function Main() {
+interface Props {
+  handleShowSave: () => void;
+}
+
+function Main({ handleShowSave }: Props) {
   let itemsFromLocalStorage = localStorage.items;
   if (itemsFromLocalStorage) itemsFromLocalStorage = JSON.parse(itemsFromLocalStorage);
   const defaultItems: Items[] = itemsFromLocalStorage !== undefined ? itemsFromLocalStorage : [];
@@ -32,6 +36,7 @@ function Main() {
       return;
     }
     localStorage.items = JSON.stringify(items);
+    handleShowSave();
   }, [items]);
 
   function addItem() {
@@ -129,7 +134,7 @@ function Main() {
       <Category
         sortCategory={sortCategory}
         selectedCategory={(value: string) => {
-          //Send props to App.tsx to update showSave
+          handleShowSave();
           setSelectedCategory(value);
           inputElement.current?.focus();
         }}

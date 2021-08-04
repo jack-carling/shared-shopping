@@ -48,3 +48,21 @@ Shared shopping is my first React project where the user can create a list, cate
 - Pet Care
 - Pharmacy
 - Tobacco
+
+## Installation
+
+```bash
+npm install
+```
+
+For the backend you will need a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account. Create a `.env` file in the root directory and insert `MONGO_DB=` followed by your connection string.
+
+```bash
+# Terminal 1 (frontend)
+npm run dev
+```
+
+```bash
+# Terminal 2 (backend)
+npm run database
+```

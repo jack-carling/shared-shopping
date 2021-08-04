@@ -6,9 +6,10 @@ interface Props {
   handleSettings: (e: React.MouseEvent) => void;
   handleShare: (e: React.MouseEvent) => void;
   name: string;
+  showSave: boolean;
 }
 
-function Header({ handleSettings, handleShare, name }: Props) {
+function Header({ handleSettings, handleShare, name, showSave }: Props) {
   const [displayName, setDisplayName] = useState('');
   const header = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
@@ -21,6 +22,7 @@ function Header({ handleSettings, handleShare, name }: Props) {
         {displayName}
       </h1>
       <div>
+        {showSave && <i className="material-icons">save</i>}
         <i className="material-icons" onClick={handleShare}>
           share
         </i>

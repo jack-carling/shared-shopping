@@ -129,6 +129,7 @@ function Main() {
       <Category
         sortCategory={sortCategory}
         selectedCategory={(value: string) => {
+          //Send props to App.tsx to update showSave
           setSelectedCategory(value);
           inputElement.current?.focus();
         }}

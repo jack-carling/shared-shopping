@@ -6,8 +6,9 @@ import Share from './components/Share';
 import Main from './components/Main';
 
 function App() {
-  const [showSettings, setShowSettings] = useState(false);
+  const [showSave, setShowSave] = useState(false);
   const [showShare, setShowShare] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   let nameFromLocalStorage = localStorage.name;
   const defaultName = nameFromLocalStorage !== undefined ? nameFromLocalStorage : 'Shared Shopping';
@@ -15,7 +16,12 @@ function App() {
 
   return (
     <>
-      <Header handleSettings={() => setShowSettings(true)} name={name} handleShare={() => setShowShare(true)} />
+      <Header
+        showSave={showSave}
+        handleSettings={() => setShowSettings(true)}
+        name={name}
+        handleShare={() => setShowShare(true)}
+      />
       {showSettings && (
         <Settings
           name={name}

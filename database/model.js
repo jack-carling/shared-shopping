@@ -4,10 +4,11 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const Shopping = new Schema({
-  id: String,
+  code: String,
   name: String,
   items: Array,
   categories: Array,
+  password: String,
 });
 
 module.exports = mongoose.model('Shopping', Shopping);

@@ -6,12 +6,11 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-mongoose.connect(process.env.MONGO_DB, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
+async function connect() {
+  mongoose.connect(process.env.MONGO_DB);
+}
+
+connect().catch((error) => console.log(error));
 
 const Shopping = require('./model');
 

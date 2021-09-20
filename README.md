@@ -18,7 +18,7 @@ Shared shopping is my first React project where the user can create a list, cate
 
 ## Screenshot
 
-<img src="https://user-images.githubusercontent.com/72305598/128172799-01faa1c0-5d6d-4b7f-b327-88a59ec074d4.png" width="200px">
+<img src="https://user-images.githubusercontent.com/72305598/128172799-01faa1c0-5d6d-4b7f-b327-88a59ec074d4.png" width="400">
 
 ## Installation
 
